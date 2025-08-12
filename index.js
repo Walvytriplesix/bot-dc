@@ -1,7 +1,8 @@
 require('dotenv').config();
 
 const express = require('express');
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+// Hapus node-fetch karena tidak dipakai
+
 const { Client, GatewayIntentBits, Partials, EmbedBuilder, PermissionsBitField } = require('discord.js');
 
 const client = new Client({
@@ -102,11 +103,12 @@ client.on('messageCreate', async message => {
   }
 });
 
+const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => res.send('Bot is running!'));
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Web server aktif di port ${port}`));
+app.listen(port, () => console.log(`Server berjalan di port ${port}`));
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.DISCORD_TOKEN).catch(console.error);
